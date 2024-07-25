@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -32,7 +26,7 @@ model Os{
   abertura DateTime @default(now())
   encerramento DateTime?
   comentarios Comentario[] @relation("possui")
-  Colaboradores Colaborador @relation("abre", fields: [colaborador], references: [matricula])
+  colaboradores Colaborador @relation("abre",fields: [colaborador], references: [matricula])
   executores Colaborador? @relation("executa", fields: [executor], references: [matricula])
 }
 
@@ -42,6 +36,6 @@ model Comentario{
   colaborador String @db.VarChar(8)
   comentario String @db.VarChar(255)
   data DateTime @default(now())
-  oss Os @relation("possui", fields: [os], references: [id])
-  colaboradores Colaborador @relation("faz", fields: [colaborador], references: [matricula])
+  oss Os @relation("possui",fields: [os], references: [id])
+  colaboradores Colaborador @relation("faz",fields: [colaborador], references: [matricula])
 }
