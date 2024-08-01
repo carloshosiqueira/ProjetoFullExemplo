@@ -17,7 +17,7 @@ const login = async (req, res) => {
             expiresIn: 3600
         });
         colaborador.token = token;
-        return res.json(colaborador);
+        return res.status(200).json(colaborador);
     } else {
         return res.status(401).json({ message: 'Matrícula ou pin inválidos' });
     }
