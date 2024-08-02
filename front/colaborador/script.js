@@ -1,15 +1,15 @@
-const uri = 'http://localhost:3000/os';
+const uriColaborador = 'http://localhost:3000/colaborador';
 const dados = document.getElementById('dados');
 
-let os = [];
+let colaboradores = [];
 
 async function carregarTabela() {
   try {
-    const response = await fetch(uri);
+    const response = await fetch(uriColaborador);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    os = await response.json();
+    colaboradores = await response.json();
     preencherTabela();
   } catch (error) {
     console.error('Erro dando fetch:', error);
@@ -22,15 +22,13 @@ function preencherTabela() {
     return;
   }
 
-  const tableContent = os.map((os) => {
+  const tableContent = colaboradores.map((colaborador) => {
     return `
       <tr>
-        <td>${os.id}</td>
-        <td>${os.descricao}</td>
-        <td>${os.colaborador}</td>
-        <td>${os.executor}</td>
-        <td>${os.abertura.split('T')[0]}</td>
-        <td>${os.encerramento.split("T")[0]}</td>
+        <td>${colaborador.matricula}</td>
+        <td>${colaborador.nome}</td>
+        <td>${colaborador.cargo}</td>
+        <td>${colaborador.setor}</td>
       </tr>
     `;
   }).join('');

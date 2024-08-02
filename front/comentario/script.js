@@ -1,15 +1,15 @@
-const uri = 'http://localhost:3000/os';
+const uriComentario = 'http://localhost:3000/comentario';
 const dados = document.getElementById('dados');
 
-let os = [];
+let comentarios = [];
 
 async function carregarTabela() {
   try {
-    const response = await fetch(uri);
+    const response = await fetch(uriComentario);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    os = await response.json();
+    comentarios = await response.json();
     preencherTabela();
   } catch (error) {
     console.error('Erro dando fetch:', error);
@@ -22,15 +22,14 @@ function preencherTabela() {
     return;
   }
 
-  const tableContent = os.map((os) => {
+  const tableContent = comentarios.map((comentario) => {
     return `
       <tr>
-        <td>${os.id}</td>
-        <td>${os.descricao}</td>
-        <td>${os.colaborador}</td>
-        <td>${os.executor}</td>
-        <td>${os.abertura.split('T')[0]}</td>
-        <td>${os.encerramento.split("T")[0]}</td>
+        <td>${comentario.id}</td>
+        <td>${comentario.os}</td>
+        <td>${comentario.colaborador}</td>
+        <td>${comentario.comentario}</td>
+        <td>${comentario.data.split('T')[0]}</td>
       </tr>
     `;
   }).join('');

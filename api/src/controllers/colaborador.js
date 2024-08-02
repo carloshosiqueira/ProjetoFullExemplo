@@ -14,7 +14,7 @@ const login = async (req, res) => {
     if (colaborador) {
         const token = await jwt.sign({ matricula: colaborador.matricula }, process.env.KEY, {
             //expira em uma hora ou 3600 segundos
-            expiresIn: 3600
+            expiresIn: 60
         });
         colaborador.token = token;
         return res.status(200).json(colaborador);
